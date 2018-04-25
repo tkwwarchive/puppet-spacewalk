@@ -62,11 +62,11 @@ describe 'spacewalk repo server class:' do
     end
   end
 
-  describe 'jpackage repo' do
-    describe file('/etc/yum.repos.d/jpackage-generic.repo') do
+  describe 'copr repo' do
+    describe file('/etc/yum.repos.d/copr-java.repo') do
       it { is_expected.to exist }
       it { is_expected.to be_file }
-      it { is_expected.to contain 'http://www.jpackage.org/mirrorlist.php?dist=generic&type=free&release=5.0' }
+      it { is_expected.to contain 'https://copr-be.cloud.fedoraproject.org/results/@spacewalkproject/java-packages/epel-7-$basearch/' }
     end
   end
 end

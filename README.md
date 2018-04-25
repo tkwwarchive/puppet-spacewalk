@@ -64,7 +64,7 @@ class { 'spacewalk':
 ####Public Classes
 
 * spacewalk: Main class, includes all other classes.
-* spacewalk::repo::server: Manages Spacewalk and Jpackage yum repositories.
+* spacewalk::repo::server: Manages Spacewalk and COPR yum repositories.
 * spacewalk::repo::client: Manages Spacewalk client yum repositories.
 
 ####Private Classes

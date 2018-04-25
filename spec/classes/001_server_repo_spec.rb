@@ -7,11 +7,9 @@ describe 'spacewalk::repo::server' do
     spacewalk_repo_gpgcheck: '1',
     spacewalk_repo_release: 'latest',
     spacewalk_repo_gpgkey: 'http://yum.spacewalkproject.org/RPM-GPG-KEY-spacewalk-2015',
-    jpackage_repo_enabled: '1',
-    jpackage_repo_gpgcheck: '1',
-    jpackage_repo_mirrorlist: 'http://www.jpackage.org/mirrorlist.php?dist=generic&type=free&release=5.0',
-    jpackage_repo_baseurl: 'absent',
-    jpackage_repo_gpgkey: 'http://www.jpackage.org/jpackage.asc'
+    copr_repo_enabled: '1',
+    copr_repo_gpgcheck: '1',
+    copr_repo_gpgkey: 'https://copr-be.cloud.fedoraproject.org/results/@spacewalkproject/java-packages/pubkey.gpg'
   }
 
   on_supported_os(supported_os: [
@@ -34,7 +32,7 @@ describe 'spacewalk::repo::server' do
       end
       it { is_expected.to contain_class('spacewalk::repo::server') }
       it { is_expected.to compile.with_all_deps }
-      it { is_expected.to contain_yumrepo('jpackage-generic') }
+      it { is_expected.to contain_yumrepo('copr-java') }
 
       case facts[:operatingsystemmajrelease]
       when '6'
