@@ -23,11 +23,9 @@ class spacewalk::repo::server (
   $spacewalk_repo_release   = 'latest',
   $spacewalk_repo_gpgkey    = 'http://yum.spacewalkproject.org/RPM-GPG-KEY-spacewalk-2015',
 
-  $jpackage_repo_enabled    = '1',
-  $jpackage_repo_gpgcheck   = '1',
-  $jpackage_repo_mirrorlist = 'http://www.jpackage.org/mirrorlist.php?dist=generic&type=free&release=5.0',
-  $jpackage_repo_baseurl    = 'absent',
-  $jpackage_repo_gpgkey     = 'http://www.jpackage.org/jpackage.asc',
+  $copr_repo_enabled    = '1',
+  $copr_repo_gpgcheck   = '1',
+  $copr_repo_gpgkey     = 'https://copr-be.cloud.fedoraproject.org/results/@spacewalkproject/java-packages/pubkey.gpg',
 ){
 
   case $::osfamily {
@@ -41,13 +39,13 @@ class spacewalk::repo::server (
         baseurl  => "http://yum.spacewalkproject.org/${spacewalk_repo_release}/RHEL/${::operatingsystemmajrelease}/\$basearch/",
     }
 
-      yumrepo {'jpackage-generic':
-        enabled    => $jpackage_repo_enabled,
-        descr      => 'Jpackage Generic Repository',
-        gpgcheck   => $jpackage_repo_gpgcheck,
-        gpgkey     => $jpackage_repo_gpgkey,
-        mirrorlist => $jpackage_repo_mirrorlist,
-        baseurl    => $jpackage_repo_baseurl,
+      yumrepo {'copr-java':
+        enabled       => $copr_repo_enabled,
+        descr         => 'Copr repo for java packages owned by @spacewalkproject',
+        gpgcheck      => $copr_repo_gpgcheck,
+        gpgkey        => $copr_repo_gpgkey,
+        baseurl       => "https://copr-be.cloud.fedoraproject.org/results/@spacewalkproject/java-packages/epel-${::operatingsystemmajrelease}-\$basearch/",
+        repo_gpgcheck => '0',
       }
     }
     default: {
