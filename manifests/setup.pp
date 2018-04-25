@@ -113,6 +113,14 @@ class spacewalk::setup (
     notify  => Exec['spacewalk-setup'],
   }
 
+  if $postgresql_embedded == true {
+    exec {'postgres-init':
+      cwd     => '/root',
+      command => '/bin/postgresql-setup initdb',
+      unless  => '/bin/test -d /var/lib/pgsql/data',
+    }
+  }->
+
   exec {'spacewalk-setup':
     cwd         => '/root',
     command     => '/usr/bin/spacewalk.sh',
