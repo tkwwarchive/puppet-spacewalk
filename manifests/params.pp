@@ -1,12 +1,12 @@
 # Class spacewalk_repo::params
 # ===========================
 #
-# Default values for spacewalk module 
+# Default values for spacewalk module
 #
 class spacewalk::params {
 
   case $::operatingsystem {
-    'RedHat', 'CentOS': {
+    'RedHat', 'CentOS', 'Fedora': {
 
       $db_backend                  = 'postgresql'
       $postgresql_embedded         = true
