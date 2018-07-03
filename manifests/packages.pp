@@ -30,4 +30,9 @@ class spacewalk::packages (
     }
     default: { fail('Unsupported backend')}
   }
+
+  package { 'spacecmd':
+    ensure => installed,
+  }
+
 }
