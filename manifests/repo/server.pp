@@ -17,7 +17,7 @@ class spacewalk::repo::server (
         descr    => "Spacewalk ${spacewalk_repo_release} Repository",
         gpgcheck => $spacewalk_repo_gpgcheck,
         gpgkey   => $spacewalk_repo_gpgkey,
-        baseurl  => "https://copr-be.cloud.fedoraproject.org/results/@spacewalkproject/spacewalk-2.8/fedora-${::operatingsystemmajrelease}-$basearch/",
+        baseurl  => "https://copr-be.cloud.fedoraproject.org/results/@spacewalkproject/spacewalk-2.8/fedora-${::operatingsystemmajrelease}-\$basearch/",
     }
 
       yumrepo {'copr-java':
