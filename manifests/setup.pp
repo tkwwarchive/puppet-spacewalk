@@ -118,8 +118,9 @@ class spacewalk::setup (
       cwd     => '/root',
       command => '/bin/postgresql-setup initdb',
       unless  => '/bin/test -d /var/lib/pgsql/data',
+      before  => Exec['spacewalk-setup'],
     }
-  }->
+  }
 
   exec {'spacewalk-setup':
     cwd         => '/root',
